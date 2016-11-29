@@ -1,8 +1,18 @@
 {
   "name": "remember-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple program used to remember and redo program operations",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jimmy-YMJ/remember-js"
+  },
+  "contributors": [
+    {
+      "name": "Jimmy-YMJ",
+      "email": "ddmingmingyang@gmail.com"
+    }
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
