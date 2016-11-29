@@ -4,7 +4,7 @@ const storageId = '#REMEMBER_JS_REMEMBER_QUEUE';
 function Remember(options) {
   options = options || {};
   this.actions = {};
-  this.inSequence = options.inSequence || true;
+  this.inSequence = options.inSequence || false;
   this.rememberQueue = new Storage(options.storageId || storageId, options.storage);
   this.onConsumingComplete = options.onConsumingComplete;
 }
