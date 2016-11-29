@@ -2,10 +2,27 @@
 
 **remember-js** is used to remember some program operations and redo those if needed.
 
+## Installing
+Use via npm:
+```bash
+$ npm install remember-js
+```
+```javascript
+const Remember = require('remember-js');
+
+// Use es6 import
+import Remember from 'remember-js';
+
+```
+Use in browser:
+
+Scripts for browser is under [build](https://github.com/Jimmy-YMJ/remember-js/tree/master/build) directory, use `remember.js` for development environment(contains inline source maps), use `remember.min.js` for production.
+The references in browser is `window.Remember`.
+
 ## Conventions
 
 `Remember` is the main class of **remember-js** package and `remember` is an instance of `Remember`.
-An **action type** is an unique string identifying a callback that doing some program operations.
+An **action type** is a unique string identifying a callback that doing some program operations.
 An **action** is a call of an **action type**.
 
 
@@ -60,7 +77,7 @@ remember.do(SAVE_USERNAME, 'userId', 'username');
 ```
 
 ## Examples
-Using [MemoryStorage]() (it's the default storage) to process actions sequentially.
+Using [MemoryStorage](https://github.com/Jimmy-YMJ/remember-js/blob/master/src/lib/MemoryStorage.js) (it's the default storage) to process actions sequentially.
 
 ```javascript
 
@@ -101,8 +118,8 @@ remember.do(SECOND_ACTION);
 | --- | --- | --- | --- |
 | inSequence | If it's `true`, the remember will make sure that all the actions is completed in the order they are called. | `Boolean` | `false` |
 | storageId | The storage identity to use to store the action, you should provide your own if you are going to use more than one remembers. |`String` | `'#REMEMBER_JS_REMEMBER_QUEUE'` |
-| storage | The storage used to store actions. It's required to provide two methods: `getItem(key)` and `setItem(key, value)`, you can use localStorage or sessionStorage directly in browser context. | `Object` | [MemoryStorage](). |
-| onConsumingComplete | If the `inSequence` parameter is `true` and the stored actions is not empty, this callback will be called when stored actions is all completed. | `Function`| `undefined` |
+| storage | The storage used to store actions. It's required to provide two methods: `getItem(key)` and `setItem(key, value)`, you can use localStorage or sessionStorage directly in browser context. | `Object` | [MemoryStorage](https://github.com/Jimmy-YMJ/remember-js/blob/master/src/lib/MemoryStorage.js). |
+| onConsumingComplete | If the `inSequence` parameter is `true` and the stored actions is not empty, this callback will be called when stored actions are all completed. | `Function`| `undefined` |
 
 The `inSequence` option can define two different types of remember.
 If it's `true`, the callback of `remember.registerAction` will be passed a `next` parameter which is used to tell remember that the current action is completed and do next action please.
