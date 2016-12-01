@@ -34,7 +34,7 @@ Storage.prototype = {
     this._saveDataToStore([]);
   },
   _getStoredData: function () {
-    return JSON.parse(this.store.getItem(this.storeId) || '') || [];
+    return JSON.parse(this.store.getItem(this.storeId) || JSON.stringify('')) || [];
   },
   _saveDataToStore: function (data) {
     this.store.setItem(this.storeId, JSON.stringify(data));
