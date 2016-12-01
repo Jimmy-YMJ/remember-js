@@ -139,6 +139,9 @@ If it's `false`, the callback of `remember.registerAction` will be passed a `rem
 | name | The action type to use. | `String` | `undefined` |
 | a, b, c, d, e, f | Parameters that will be passed to action type callback. | Any type | `undefined` |
 
+### remember.set(options)
+This method is used to set remember options, parameter `options` is the same with `Remember`'s.
+
 ### remember.consume()
 This method is used to consume stored actions.
 
