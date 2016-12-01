@@ -2,7 +2,7 @@ const Storage = require('./Storage');
 const storageId = '#REMEMBER_JS_REMEMBER_QUEUE';
 
 function Remember(options) {
-  options = options || {};
+  this.options = options || {};
   this.actions = {};
   this.inSequence = options.inSequence || false;
   this.rememberQueue = new Storage(options.storageId || storageId, options.storage);
@@ -12,6 +12,9 @@ function Remember(options) {
 Remember.prototype = {
   registerAction: function (name, callback) {
     this.actions[name] = callback;
+  },
+  set: function (options) {
+    Remember.call(this, Object.assign(this.options, options));
   },
   _remember: function (data) {
     this.rememberQueue.push(data);
