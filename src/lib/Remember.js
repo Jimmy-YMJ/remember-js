@@ -3,7 +3,6 @@ const storageId = '#REMEMBER_JS_REMEMBER_QUEUE';
 
 function Remember(options) {
   this.options = options || {};
-  this.actions = {};
   this.inSequence = options.inSequence || false;
   this.rememberQueue = new Storage(options.storageId || storageId, options.storage);
   this.onConsumingComplete = options.onConsumingComplete;
@@ -11,6 +10,7 @@ function Remember(options) {
 
 Remember.prototype = {
   registerAction: function (name, callback) {
+    this.actions = this.actions || {};
     this.actions[name] = callback;
   },
   set: function (options) {
