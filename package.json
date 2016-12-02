@@ -1,6 +1,6 @@
 {
   "name": "remember-js",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A simple program used to remember and redo program operations",
   "main": "index.js",
   "repository": {
