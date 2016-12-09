@@ -21,7 +21,7 @@ Remember.prototype = {
   },
   _next: function () {
     this.rememberQueue.shift();
-    this.consume(false);
+    this._consumeInSequence(false);
   },
   do: function (name, a, b, c, d, e, f) {
     let args = argumentsToArray(arguments);
@@ -56,7 +56,7 @@ Remember.prototype = {
   },
   consume: function () {
     if(this.inSequence){
-      this._consumeInSequence();
+      this._consumeInSequence(true);
     }else {
       this._consume();
     }
