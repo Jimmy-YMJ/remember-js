@@ -21,13 +21,16 @@ Remember.prototype = {
   },
   _next: function () {
     this.rememberQueue.shift();
-    this._consumeInSequence(false);
+    if(typeof this.consumeCount === 'number'){
+      this.consumeCount ++;
+    }
+    this._consumeInSequence();
   },
   do: function (name, a, b, c, d, e, f) {
     let args = argumentsToArray(arguments);
     if(this.inSequence){
       this._remember(args);
-      this._consumeInSequence(true);
+      this._consumeInSequence();
     }else {
       this._doAction.apply(this, args);
     }
@@ -41,11 +44,14 @@ Remember.prototype = {
     let callback = this.actions[name];
     callback(this._next.bind(this), a, b, c, d, e, f);
   },
-  _consumeInSequence: function (isBeginning) {
+  _consumeInSequence: function () {
     if(this.rememberQueue.getLength()){
       this._doActionInSequence.apply(this, this.rememberQueue.peek());
-    }else if(!isBeginning && typeof this.onConsumingComplete === 'function'){
-      this.onConsumingComplete();
+    }else if(typeof this.consumeCount === 'number'){
+      if(this.consumeCount && typeof this.onConsumingComplete === 'function'){
+        this.onConsumingComplete(this.consumeCount);
+      }
+      this.consumeCount = undefined;
     }
   },
   _consume: function () {
@@ -56,7 +62,8 @@ Remember.prototype = {
   },
   consume: function () {
     if(this.inSequence){
-      this._consumeInSequence(true);
+      this.consumeCount = 0;
+      this._consumeInSequence();
     }else {
       this._consume();
     }
